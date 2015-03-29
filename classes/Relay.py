@@ -6,7 +6,7 @@ See the file 'LICENSE' for copying permission
 """
 
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from lib import settings
 from Switch import Switch
 from Component import Component
@@ -55,11 +55,11 @@ class Relay(Switch):
     
     def on(self,pins):
         print str(pins)+ ' on'
-        #GPIO.output(pins, GPIO.HIGH)
+        GPIO.output(pins, GPIO.HIGH)
     
     def off(self, pins):
         print str(pins)+ ' off'
-        #GPIO.output(pins, GPIO.LOW)
+        GPIO.output(pins, GPIO.LOW)
     
     def activation(self, pins):
         self.on(pins)
