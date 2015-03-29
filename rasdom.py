@@ -17,7 +17,7 @@ def main():
     rel1 = Relay.Relay() 
     rel1.test()
     rel1.set_note("Relay Cantina")
-    rel1.launch_function("0", 0)
+
     ComponentList.append(rel1)
     
     Server.Server(ComponentList)
