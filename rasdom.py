@@ -6,20 +6,23 @@ See the file 'LICENSE' for copying permission
 """
 
 from classes import Relay
-from classes import Socket
-from lib import settings
+from classes import Server
+import sys
 
-import threading, sys
 
 def main():
-    r = Relay.Relay() 
-    print 'Rele status: ' + str(r.get_status())
-    if r.get_status()=='on':
-        print 'Starting Server on port 4242'
-        server = Socket.ThreadedTCPServer((settings.HOSTNAME,settings.PORT), Socket.ThreadedTCPRequestHandler)
-        server_thread = threading.Thread(target=server.serve_forever)
-        server_thread.daemon = True
-        server_thread.start()
+    
+    ComponentList = []
+    
+    rel1 = Relay.Relay() 
+    rel1.test()
+    rel1.set_note("Relay Cantina")
+    rel1.launch_function("0", 0)
+    ComponentList.append(rel1)
+    
+    Server.Server(ComponentList)
+    
+    print 'server ok'
     while 1:
         try:
             print 'Listening for commands'

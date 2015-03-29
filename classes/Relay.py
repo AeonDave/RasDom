@@ -6,7 +6,7 @@ See the file 'LICENSE' for copying permission
 """
 
 import time
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from lib import settings
 from Switch import Switch
 from Component import Component
@@ -18,16 +18,10 @@ class Relay(Switch):
         try:
             Component.gpio_initialization(self)
             Switch.gpio_setup(self)
-            if self.test():
-                print 'Test ok'
-                self.set_status('on')
-                
-            else:
-                print 'Test failed'
-                self.set_status('test error')
+            self.set_status('on')
         except:
-            print 'Fatal error'
-            self.set_status('fatal error. Run as Root')
+            print 'Fatal error. Run as Root'
+            self.set_status('fatal error')
         
     def get_sleeptime(self):
         return self.sleeptime
@@ -59,13 +53,13 @@ class Relay(Switch):
     def set_sleeptime(self, sleeptime):
         self.sleeptime = sleeptime
     
-    def on(self,i):
-        print i
-        GPIO.output(self.get_pins(), GPIO.HIGH)
+    def on(self,pins):
+        print str(pins)+ ' on'
+        #GPIO.output(pins, GPIO.HIGH)
     
-    def off(self, i):
-        print i
-        GPIO.output(self.get_pins(), GPIO.LOW)
+    def off(self, pins):
+        print str(pins)+ ' off'
+        #GPIO.output(pins, GPIO.LOW)
     
     def activation(self, pins):
         self.on(pins)
@@ -78,5 +72,13 @@ class Relay(Switch):
             time.sleep(self.get_sleeptime());
         for i in self.get_pins():
             self.off(i)
-            time.sleep(self.get_sleeptime()); 
-        return True 
+            time.sleep(self.get_sleeptime());  
+            
+    def get_functions(self):
+        functions = ['activate']
+        return functions
+        
+    def launch_function(self, function, pin):
+        if function == "0":
+            print "Activating"
+            self.activation(pin)

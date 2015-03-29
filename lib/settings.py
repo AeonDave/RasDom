@@ -6,7 +6,7 @@ See the file 'LICENSE' for copying permission
 """
 
 import os ,sys
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 VERSION = "0.1 alfa"
 AUTHOR = "AeonDave"
@@ -16,7 +16,7 @@ ISSUES_PAGE = ""
 GIT_REPOSITORY = ""
 
 #GPIO Relay
-GPIOMODE = GPIO.BCM
+#GPIOMODE = GPIO.BCM
 SLEEPTIME = 0.5
 PINS = [17,18]
 PINS_NAMES = ['Cancello','Portone']

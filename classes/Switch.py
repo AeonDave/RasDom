@@ -5,7 +5,7 @@ Copyright (c) 2015 RasDom by Aeondave
 See the file 'LICENSE' for copying permission
 """
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from Component import Component
 
 class Switch(Component): 
@@ -21,5 +21,5 @@ class Switch(Component):
         
     def gpio_setup(self):
         print 'setup'
-        GPIO.setup(self.get_pins(), GPIO.OUT)
-        GPIO.output(self.get_pins(), GPIO.LOW)
+        #GPIO.setup(self.get_pins(), GPIO.OUT)
+        #GPIO.output(self.get_pins(), GPIO.LOW)
