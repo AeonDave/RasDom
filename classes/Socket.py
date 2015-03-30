@@ -27,7 +27,7 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
         if password == settings.PASSWORD:
             
             while self.request.recv(SIZE) != "e":
-                
+                data = None
                 self.request.send("\n\n---------------------\r\n")
                 self.request.send("Listening for commands\r\n")
                 self.request.send("1: Connected devices list\r\n")
@@ -95,10 +95,9 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
                         else:
                             pin = 0
                         
-                        rpin = component.get_pins()[pin]
+                        rpin = component.get_pins()[int(pin)]
                         component.launch_function(str(self.server.get_current_function()), int(rpin))
                         self.request.send("Function Launched\n\r")
-                        
                         
                     else:
                         self.request.send("No divice selected\n\r")
