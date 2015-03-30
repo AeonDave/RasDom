@@ -27,14 +27,14 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
             
             if password == settings.PASSWORD:
                 
-                while self.request.recv(SIZE) != "0":
+                while self.request.recv(SIZE) != "e":
                     
                     self.request.send("\n\n---------------------\r\n")
                     self.request.send("Listening for commands\r\n")
                     self.request.send("1: Connected devices list\r\n")
                     self.request.send("2: Select device\r\n")
                     self.request.send("3: Device functions\r\n")
-                    self.request.send("0: Close connection\r\n")
+                    self.request.send("e: Close connection\r\n")
                     self.request.send("---------------------\r\n\n")    
                 
                     data = self.request.recv(SIZE)
