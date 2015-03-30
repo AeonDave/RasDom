@@ -95,7 +95,8 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
                         else:
                             pin = 0
                         
-                        component.launch_function(str(self.server.get_current_function()), int(pin))
+                        rpin = component.get_pins()[pin]
+                        component.launch_function(str(self.server.get_current_function()), int(rpin))
                         self.request.send("Function Launched\n\r")
                         
                         
