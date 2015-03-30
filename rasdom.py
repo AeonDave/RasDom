@@ -30,6 +30,7 @@ def main():
             print x
         except:
             print 'RasDom console terminated'
+			rel1.gpio_unset()
             sys.exit()
             
 if  __name__ =='__main__':
